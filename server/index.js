@@ -4,6 +4,7 @@ var request = require('request')
 var app = express();
 var token = require('../config.js').API_TOKEN;
 var axios = require('axios');
+var db = require('./database.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
@@ -59,12 +60,21 @@ app.get('/genres', function(req, res) {
 })
 
 app.post('/save', function(req, res) {
-
+  let params = [req.body.id, req.body.title, req.body.date, req.body.rating, req.body.image];
+  db.saveFavorite(params, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.sendStatus(201);
+    }
+  })
 })
 
 app.post('/delete', function(req, res) {
+  
 
 })
+
 app.listen(3000, function() {
   console.log('listening on port 3000!');
 });
