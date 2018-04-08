@@ -17,7 +17,7 @@ class App extends React.Component {
     this.deleteMovie = this.deleteMovie.bind(this);
     this.saveMovie = this.saveMovie.bind(this);
     this.swapFavorites = this.swapFavorites.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.getFavorites = this.getFavorites.bind(this);
   }
 
@@ -78,9 +78,9 @@ class App extends React.Component {
     })
   }
 
-  // handleClick() {
-  //   this.state.showFaves ? this.deleteMovie : this.saveMovie
-  // }
+  handleClick(movie) {
+    this.state.showFaves ? this.deleteMovie(movie) : this.saveMovie(movie)
+  }
 
   render () {
   	return (
@@ -88,7 +88,7 @@ class App extends React.Component {
       <header className="navbar"><h1>Bad Movies</h1></header> 
       <div className="main">
         <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves} getMovies={this.getMovies}/>
-        <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves} handleClick={this.state.showFaves ? this.deleteMovie : this.saveMovie} />
+        <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves} handleClick={this.handleClick} />
       </div>
     </div>)
   }
