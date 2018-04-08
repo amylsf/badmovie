@@ -60,7 +60,7 @@ app.get('/genres', function(req, res) {
 })
 
 app.post('/save', function(req, res) {
-  let params = [req.body.id, req.body.title, req.body.date, req.body.rating, req.body.image];
+  let params = [req.body.item.id, req.body.item.title, req.body.item.release_date, req.body.item.vote_average, req.body.item.poster_path];
   db.saveFavorite(params, (err, results) => {
     if (err) {
       console.log(err);
@@ -71,8 +71,13 @@ app.post('/save', function(req, res) {
 })
 
 app.post('/delete', function(req, res) {
-  
-
+  db.deleteFavorite(req.body.item.id, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.sendStatus(201);
+    }
+  })
 })
 
 app.listen(3000, function() {

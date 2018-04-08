@@ -34,7 +34,7 @@ class App extends React.Component {
     })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getMovies('28')
   }
 
@@ -48,16 +48,27 @@ class App extends React.Component {
     })
   }
   
-  saveMovie() {
-    //same as above but do something diff
+  saveMovie(item) {
+    axios.post('/save', {item: item})
+    .then(({data}) => {
+      console.log('Item saved successfully');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
-  deleteMovie() {
-    //same as above but do something diff
+  deleteMovie(item) {
+    axios.post('/delete', {item: item})
+    .then(({data}) => {
+      console.log('Deleted!');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   swapFavorites() {
-  //dont touch
     this.setState({
       showFaves: !this.state.showFaves
     })
