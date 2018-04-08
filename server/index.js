@@ -8,11 +8,11 @@ var axios = require('axios');
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 
-let getMovies = (callback) => {
+let getMovies = (genre, callback) => {
   options = {
       "async": true,
       "crossDomain": true,
-      "url": `https://api.themoviedb.org/3/discover/movie?include_video=false&include_adult=false&sort_by=vote_average.asc&language=en-US&api_key=${token}`,
+      "url": `https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&include_video=false&include_adult=false&sort_by=vote_average.asc&language=en-US&api_key=${token}`,
       "method": "GET",
       "headers": {},
       "data": "{}"
@@ -28,7 +28,7 @@ let getMovies = (callback) => {
 }
 
 app.get('/search', function(req, res) {
-  getMovies(function(data) {
+  getMovies(req.query.genre, function(data) {
     res.status(200).send(JSON.stringify(data.results));
   })
 })
@@ -54,10 +54,8 @@ let getGenres = (callback) => {
 
 app.get('/genres', function(req, res) {
   getGenres(function(data) {
-    res.status(200).send(JSON.stringify(data));
+    res.status(200).send(JSON.stringify(data.genres));
   })
-
-    //send back
 })
 
 app.post('/save', function(req, res) {
