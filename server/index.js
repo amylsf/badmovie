@@ -53,6 +53,12 @@ let getGenres = (callback) => {
   })
 }
 
+app.get('/favorites', function(req, res) {
+  db.getAllFavorites((data) => {
+    res.status(200).send(JSON.stringify(data));
+  })
+})
+
 app.get('/genres', function(req, res) {
   getGenres(function(data) {
     res.status(200).send(JSON.stringify(data.genres));

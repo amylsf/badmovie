@@ -18,7 +18,7 @@ const getAllFavorites = function(callback) {
 };
 
 const saveFavorite = function(params, callback) {
-  connection.query('INSERT INTO movies (id, movieId, title, release_date, rating, image) VALUES (?)', params, (err, results) => {
+  connection.query('INSERT INTO movies (movieId, title, release_date, vote_average, poster_path) VALUES (?, ?, ?, ?, ?)', params, (err, results) => {
     callback(err, results);
   })
 };
