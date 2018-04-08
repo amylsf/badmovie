@@ -3,14 +3,13 @@ import React from 'react';
 class Movies extends React.Component {
   constructor(props) {
     super(props)
-
   }
-  
+
   render() {
     return (
       <ul className="movies">
         {this.props.movies.map((movie) => 
-          <li className="movie_item" onClick={() => {this.props.saveMovie(movie)}}>
+          <li className="movie_item" onClick={() => {this.props.handleClick(movie)}}>
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
           <div className="movie_description">
             <h2>{movie.title}</h2>

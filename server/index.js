@@ -77,7 +77,7 @@ app.post('/save', function(req, res) {
 })
 
 app.post('/delete', function(req, res) {
-  db.deleteFavorite(req.body.item.id, (err, results) => {
+  db.deleteFavorite(req.body.item.movieId, (err, results) => {
     if (err) {
       console.log(err);
     } else {
