@@ -22,7 +22,7 @@ class Movies extends React.Component {
       <ul className="movies">
         {this.props.movies.map((movie) => 
           <li className="movie_item">
-          <img src={movie.poster_path}/>
+          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
           <div className="movie_description">
             <h2>{movie.title}</h2>
             <section className="movie_details">

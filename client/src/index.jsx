@@ -17,7 +17,6 @@ class App extends React.Component {
     this.deleteMovie = this.deleteMovie.bind(this);
     this.saveMovie = this.saveMovie.bind(this);
     this.swapFavorites = this.swapFavorites.bind(this);
-    this.getGenres = this.getGenres.bind(this);
   }
 
   getMovies(genre) {
@@ -36,16 +35,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getMovies('28')
-  }
-
-  getGenres() {
-    axios.get('/genres')
-    .then(({data}) => {
-      console.log('success!')
-    })
-    .catch((err) => {
-      console.log(err);
-    })
   }
   
   saveMovie(item) {
